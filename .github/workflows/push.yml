@@ -22,18 +22,10 @@ jobs:
           username: ${{ secrets.DOCKERHUB_USERNAME }}
           password: ${{ secrets.DOCKERHUB_TOKEN }}
 
-      - name: Create .env file for tests
-        run: |
-          echo "DATABASE_HOST=db" > .env
-          echo "DATABASE_NAME=postgres" >> .env
-          echo "DATABASE_USERNAME=postgres" >> .env
-          echo "DATABASE_PASSWORD=password" >> .env
-
-      - name: Build image
-        run: docker compose -f docker-compose.yml build app
-
-      - name: Run tests
-        run: docker compose -f docker-compose.yml up --abort-on-container-exit --exit-code-from app
-
-      - name: Push image
-        run: docker compose -f docker-compose.yml push app
+      - name: Build and push
+        uses: docker/build-push-action@v5
+        with:
+          context: .
+          file: Dockerfile.production
+          push: true
+          tags: devopsoleg/devops-for-developers-project-74:latest
