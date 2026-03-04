@@ -1,5 +1,7 @@
 services:
   app:
+    command: make dev
+    # Здесь могут быть твои старые настройки для app, например build или environment
     environment:
       - NODE_ENV=development
 
