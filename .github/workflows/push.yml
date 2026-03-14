@@ -28,4 +28,4 @@ jobs:
           context: .
           file: Dockerfile.production
           push: true
-          tags: zolwi/devops-for-developers-project-74:latest
+          tags: devopsoleg/devops-for-developers-project-74:latest
